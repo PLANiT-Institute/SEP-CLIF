@@ -1,0 +1,12 @@
+source,min_years,max_years
+Utility solar PV,1,4
+Wind onshore,2,5
+Wind offshore,3,7
+Hydropower plant,5,15
+Conventional geothermal,3,8
+Nuclear (new),5,15
+Nuclear (restart),2,5
+Coal,3,6
+Gas CCGT,2,4
+Gas GT,1,3
+Grid connection,3,7
