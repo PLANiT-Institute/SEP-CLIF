@@ -52,9 +52,12 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 .n2-tile-value { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.1; }
 .n2-unit { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin-left: 0.15em; }
 .n2-tile-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
-.n2-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+.n2-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--cds-gap-md); }
+.n2-grid > .n2-card { grid-column: span 3; }
+.n2-grid > .n2-card-third { grid-column: span 2; }
+@media (max-width: 60rem) { .n2-grid > .n2-card, .n2-grid > .n2-card-third { grid-column: 1 / -1; } }
 .n2-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); min-width: 0; align-content: start; }
-.n2-card-wide { grid-column: 1 / -1; }
+.n2-grid > .n2-card-wide { grid-column: 1 / -1; }
 .n2-card h3 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); text-wrap: balance; }
 .n2-card p { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .n2-src { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
@@ -168,10 +171,10 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
     <div class="n2-grid">
       <div class="n2-card n2-card-wide"><h3 id="c-dur-cross">끝난 사업과 진행 중 사업의 허가 → 준공 기간</h3><p>년, 중앙값. 막대 끝 괄호는 사업 수. 끝난 사업은 KPX 추진현황 회차('16Q4~'26H1)를 이어, 목록에서 빠지기 직전에 실린 준공 예정일을 준공으로 봤습니다(KPX 건설완료 표와 맞춰 볼 수 있는 25건은 −5~+2개월 차이). 허가일은 어느 회차에서든 가장 이른 날짜입니다. 끝난 사업은 빨리 끝난 쪽으로, 진행 중 사업은 오래 걸리는 쪽으로 치우칩니다. 해상풍력·연료전지·바이오·원자력의 끝난 사업은 1~3건뿐입니다.</p><div class="n2-chart" data-draw="dur-cross" data-source="dur_cross"></div><div class="n2-legend"><span><i data-draw="sw-a"></i>끝난 사업</span><span><i data-draw="sw-m"></i>진행 중 사업(최초 허가부터)</span></div><span class="n2-src">KPX 「발전소 건설사업 추진현황」 '16Q4~'26H1 10개 회차('22Q4는 글자 판독 불가로 제외)</span></div>
       <div class="n2-card n2-card-wide"><h3 id="c-dur">사업별 허가 → 준공(예정) 기간</h3><p>'26 상반기 회차만 본 그림입니다. 점 하나가 사업 하나, 세로 막대가 중앙값. 준공은 예정일 포함이라 계획 기간이고, 신재생의 허가일은 이 회차에 실린 최근 (변경)허가일이라 위 그림보다 짧게 나옵니다. 중앙 발전소의 허가일은 사업별 상세 페이지의 최초허가입니다. 속 빈 점은 허가를 묵혀 둔 LNG 집단에너지(허가→준공 15년 초과)로, 점은 남기되 중앙값에서는 뺐습니다. 점에 마우스를 올리면 발전소 이름과 허가 이력이 나옵니다.</p><div class="n2-chart n2-tall" data-draw="dur" data-source="kpx_durations"></div><span class="n2-src">KPX 「발전소 건설사업 추진현황」 '26 상반기(3.31 기준, 사업자 제출분)</span></div>
-      <div class="n2-card"><h3 id="c-iea">세계 기준 건설기간</h3><p>일반적 사업 기준, 공급망 장비 지연 제외. 계통 접속은 3–7년 이상.</p><div class="n2-chart" data-draw="iea" data-source="iea_build"></div><span class="n2-src">IEA, Energy and AI (2025) 표 2.3</span></div>
-      <div class="n2-card"><h3 id="c-irena">한국 발전원별 연간 설비 순증</h3><p>설비용량의 연도 차분(GW). 음수와 '02·'05년 LNG처럼 튀는 값은 폐지와 통계 재분류가 섞인 것입니다.</p><div class="n2-chart" data-draw="irena" data-source="irena_additions"></div><div class="n2-legend" data-draw="irena-legend"></div><span class="n2-src">IRENASTAT 2026</span></div>
-      <div class="n2-card"><h3 id="c-entry">연도별 진입 예정 신재생</h3><p>GW/년. 막대는 KPX에 사업자가 낸 진입 일정(3MW 초과 허가 사업만이라 소규모 태양광이 빠짐), 선은 세 계획의 연간 신규 물량입니다. 11차는 연도별 표, 나머지는 목표 연도 사이 평균 속도입니다. '26~'30년은 제1차 재생에너지 기본계획(점선)과 12차 잠정안이 거의 같아 선이 겹칩니다. 기타(바이오·연료전지 등) 진입 일정은 뺐습니다. 마우스를 올리면 값이 나옵니다.</p><div class="n2-chart" data-draw="entry" data-source="kpx_re_entry"></div><div class="n2-legend"><span><i data-draw="sw-solar"></i>태양광 KPX 제출</span><span><i data-draw="sw-wind"></i>풍력 KPX 제출</span><span><i data-draw="sw-fg"></i>11차 전기본</span><span><i data-draw="sw-nuc"></i>제1차 재생에너지 기본계획</span><span><i data-draw="sw-gas"></i>12차 전기본 잠정안</span></div><span class="n2-src">KPX 같은 자료 p.10. 계획 범위: 11차 전기본 p.105, 제1차 재생에너지 기본계획 p.17, 12차 전기본 재생에너지 보급 전망 잠정안('26.8.26, 더팩트 보도, 확정 전)</span></div>
-      <div class="n2-card"><h3 id="c-perm">허가 물량 대비 일정 제출 물량</h3><p>발전사업 허가(3MW 초과) 중 추진현황을 낸 물량(GW).</p><div class="n2-chart" data-draw="perm" data-source="kpx_permitted"></div><div class="n2-legend"><span><i data-draw="sw-m"></i>사업허가</span><span><i data-draw="sw-a"></i>추진현황 제출</span></div><span class="n2-src">KPX 같은 자료 p.11</span></div>
+      <div class="n2-card n2-card-third"><h3 id="c-iea">세계 기준 건설기간</h3><p>일반적 사업 기준, 공급망 장비 지연 제외. 계통 접속은 3–7년 이상.</p><div class="n2-chart" data-draw="iea" data-source="iea_build"></div><span class="n2-src">IEA, Energy and AI (2025) 표 2.3</span></div>
+      <div class="n2-card n2-card-third"><h3 id="c-irena">한국 발전원별 연간 설비 순증</h3><p>설비용량의 연도 차분(GW). 음수와 '02·'05년 LNG처럼 튀는 값은 폐지와 통계 재분류가 섞인 것입니다.</p><div class="n2-chart" data-draw="irena" data-source="irena_additions"></div><div class="n2-legend" data-draw="irena-legend"></div><span class="n2-src">IRENASTAT 2026</span></div>
+      <div class="n2-card n2-card-third"><h3 id="c-perm">허가 물량 대비 일정 제출 물량</h3><p>발전사업 허가(3MW 초과) 중 추진현황을 낸 물량(GW).</p><div class="n2-chart" data-draw="perm" data-source="kpx_permitted"></div><div class="n2-legend"><span><i data-draw="sw-m"></i>사업허가</span><span><i data-draw="sw-a"></i>추진현황 제출</span></div><span class="n2-src">KPX 같은 자료 p.11</span></div>
+      <div class="n2-card n2-card-wide"><h3 id="c-entry">연도별 진입 예정 신재생</h3><p>GW/년. 막대는 KPX에 사업자가 낸 진입 일정(3MW 초과 허가 사업만이라 소규모 태양광이 빠짐), 선은 세 계획의 연간 신규 물량입니다. 11차는 연도별 표, 나머지는 목표 연도 사이 평균 속도입니다. '26~'30년은 제1차 재생에너지 기본계획(점선)과 12차 잠정안이 거의 같아 선이 겹칩니다. 기타(바이오·연료전지 등) 진입 일정은 뺐습니다. 마우스를 올리면 값이 나옵니다.</p><div class="n2-chart" data-draw="entry" data-source="kpx_re_entry"></div><div class="n2-legend"><span><i data-draw="sw-solar"></i>태양광 KPX 제출</span><span><i data-draw="sw-wind"></i>풍력 KPX 제출</span><span><i data-draw="sw-fg"></i>11차 전기본</span><span><i data-draw="sw-nuc"></i>제1차 재생에너지 기본계획</span><span><i data-draw="sw-gas"></i>12차 전기본 잠정안</span></div><span class="n2-src">KPX 같은 자료 p.10. 계획 범위: 11차 전기본 p.105, 제1차 재생에너지 기본계획 p.17, 12차 전기본 재생에너지 보급 전망 잠정안('26.8.26, 더팩트 보도, 확정 전)</span></div>
     </div>
   </section>
 
@@ -221,7 +224,6 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
       <div class="n2-tile"><span class="n2-tile-label">11차 '38 LNG 발전</span><span class="n2-tile-value"><span data-draw="s5-t4" data-source="gas_paths" data-field="gas_twh" data-where="source=11차 전기본&amp;year=2038">—</span><span class="n2-unit">TWh</span></span><span class="n2-tile-note">KEEI 기준안 '40 <span data-draw="s5-t4b" data-source="gas_paths" data-field="gas_twh" data-where="source=KEEI 기준안&amp;year=2040">—</span>TWh</span></div>
     </div>
     <div class="n2-grid">
-      <div class="n2-card"><h3 id="c-keei-cap">참고: KEEI 기준안 발전설비(12차 재전망 이전)</h3><p>GW. 2024는 기준값.</p><div class="n2-chart" data-draw="keei-cap" data-source="keei_power"></div><div class="n2-legend"><span><i data-draw="sw-gas"></i>가스</span><span><i data-draw="sw-solar"></i>변동성 재생</span><span><i data-draw="sw-nuc"></i>원자력</span><span><i data-draw="sw-coal"></i>석탄</span></div><span class="n2-src">에너지경제연구원 장기에너지전망 기준안 부표 A1-11</span></div>
       <div class="n2-card n2-card-wide"><h3 id="c-gen-mix">발전원별 발전량: 11차 전기본 계획과 KEEI 기준 전망</h3><p>TWh, 누적. 막대 하나가 그해 총발전량이고 맨 아래가 가스입니다. 두 자료는 이어 붙이지 않고 각각 연도순으로 놓았습니다. 11차는 온실가스 감축목표를 제약으로 넣은 정부 계획('23은 실적), KEEI는 정책 목표를 강제하지 않은 기준 전망('24는 기준값)입니다. 재생에너지에 KEEI는 수력을 더했고, 수소·신에너지는 11차의 신에너지와 청정수소·암모니아, 상용자가는 KEEI 총발전량에만 있는 한전 구입분입니다. 둘 다 12차 재전망 이전 자료라 데이터센터 순증분 84.9TWh는 들어 있지 않습니다.</p><div class="n2-chart n2-tall" data-draw="gen-mix" data-source="gen_mix"></div><div class="n2-legend" data-draw="gen-mix-legend"></div><span class="n2-src">제11차 전력수급기본계획 p.51·p.53, 에너지경제연구원 장기에너지전망 기준안 부표 A1-11</span></div>
       <div class="n2-card"><h3 id="c-gas">천연가스 수입과 발전 투입</h3><p>PJ. 열병합 투입은 열 생산분 포함.</p><div class="n2-chart" data-draw="gas" data-source="gas_balance"></div><div class="n2-legend"><span><i data-draw="sw-m"></i>수입</span><span><i data-draw="sw-gas"></i>발전전용</span><span><i data-draw="sw-gas2"></i>열병합</span></div><span class="n2-src">국가에너지수급통계(간이 에너지밸런스)</span></div>
       <div class="n2-card"><h3 id="c-subst">재생이 LNG 발전을 대체할 때</h3><p>연료비 절감(조원/년). 12차 재전망 데이터센터 '40년 수요(순증분, 전체)를 재생이 LNG 발전 대신 1TWh 대 1TWh로 공급한다고 가정. 열소비율 1.734 Mcal/kWh, LNG 13.17 Gcal/t, 연료비 124원/kWh(모두 '25 KPX 평균). 백업·계통 비용 미포함.</p><div class="n2-chart" data-draw="subst" data-source="re_substitution"></div><span class="n2-src">에너지밸런스, KPX 연료비단가 '25로 계산</span></div>
@@ -447,7 +449,7 @@ dash.calc('gas_power_share', {
     const get = (t, st) => raw.find((r) => r.tech === t && r.status === st && r.subset === (t === 'LNG 집단에너지' ? 's2_rule' : 'all'));
     const rows = T.map((t) => ({ t, k: [get(t, 'completed_est'), get(t, 'in_progress')].map((r) => (r ? { v: N.num(r.median_y), n: N.num(r.n_with_span) } : null)) }));
     const c = N.col(); const cols = [c.a, c.m];
-    const p = N.svg(el, 30 * T.length + 34, { t: 6, r: 70, b: 26, l: 108 });
+    const p = N.svg(el, 42 * T.length + 34, { t: 6, r: 70, b: 26, l: 112 });
     const y = d3.scaleBand(T, [0, p.ih]).padding(0.18); const yi = d3.scaleBand([0, 1], [0, y.bandwidth()]).padding(0.08);
     const x = d3.scaleLinear([0, d3.max(rows, (r) => d3.max(r.k, (d) => (d ? d.v : 0))) * 1.05], [0, p.iw]).nice();
     N.axis(p.g.append('g').attr('transform', `translate(0,${p.ih})`).call(d3.axisBottom(x).ticks(6).tickSize(-p.ih))).call((g) => g.select('.domain').remove());
@@ -515,16 +517,16 @@ dash.calc('gas_power_share', {
     const PL = ['11차 전기본', '제1차 재생에너지 기본계획', '12차 전기본 잠정안'];
     const ann = (N.rows('re_annual') || []).map((r) => ({ tech: r.tech, y: String(r.year), pv: [r.plan_0, r.plan_1, r.plan_2].map(N.num) }));
     const c = N.col(); const barC = [c.solar, c.wind]; const lineC = [c.fg, c.nuc, c.gas];
-    const H = 440, gap = 34, m = { t: 22, r: 120, b: 28, l: 40 };
-    const p = N.svg(el, H, m); const ph = (p.ih - gap) / 2;
-    const x = d3.scaleBand(cols.map(yl), [0, p.iw]).padding(0.25);
+    const H = 320, m = { t: 22, r: 8, b: 28, l: 34 }, lab = 128, gx = 34;
+    const p = N.svg(el, H, m); const ph = p.ih; const pw = (p.iw - 2 * lab - gx) / 2;
+    const x = d3.scaleBand(cols.map(yl), [0, pw]).padding(0.25);
     const ymax = d3.max([d3.max(raw.slice(0, 2), (r) => d3.max(cols, (k) => N.num(r[k]) / 1000)), d3.max(ann, (a) => d3.max(a.pv.filter(Number.isFinite)))]) * 1.1;
     const tip = N.tip(el);
     techs.forEach((t, ti) => {
-      const g = p.g.append('g').attr('transform', `translate(0,${ti * (ph + gap)})`);
+      const g = p.g.append('g').attr('transform', `translate(${ti * (pw + lab + gx)},0)`);
       const y = d3.scaleLinear([0, ymax], [ph, 0]).nice();
-      N.axis(g.append('g').call(d3.axisLeft(y).ticks(4).tickSize(-p.iw))).call((s) => s.select('.domain').remove());
-      if (ti === 1) N.axis(g.append('g').attr('transform', `translate(0,${ph})`).call(d3.axisBottom(x).tickFormat((d) => (d === '미정' ? d : `'${d.slice(2)}`))));
+      N.axis(g.append('g').call(d3.axisLeft(y).ticks(4).tickSize(-pw))).call((s) => s.select('.domain').remove());
+      N.axis(g.append('g').attr('transform', `translate(0,${ph})`).call(d3.axisBottom(x).tickValues(x.domain().filter((d, i) => x.step() >= 30 || i % 2 === 0 || d === '미정')).tickFormat((d) => (d === '미정' ? d : `'${d.slice(2)}`))));
       g.append('text').attr('class', 'n2-lab').attr('x', 0).attr('y', -8).attr('font-weight', 600).text(t);
       const r = raw[ti]; const bars = cols.map((k) => ({ y: yl(k), v: N.num(r[k]) / 1000 }));
       g.selectAll('rect.k').data(bars).join('rect').attr('class', 'k').attr('x', (d) => x(d.y)).attr('width', x.bandwidth()).attr('y', (d) => y(d.v)).attr('height', (d) => ph - y(d.v)).attr('rx', 2).attr('fill', barC[ti]).attr('opacity', 0.85);
@@ -552,7 +554,7 @@ dash.calc('gas_power_share', {
     const c = N.col(); const p = N.svg(el, 300, { t: 4, r: 52, b: 26, l: 72 });
     const x = d3.scaleLinear([0, d3.max(rows, (r) => r.p)], [0, p.iw]).nice();
     const y = d3.scaleBand(rows.map((r) => r.t), [0, p.ih]).padding(0.3);
-    N.axis(p.g.append('g').attr('transform', `translate(0,${p.ih})`).call(d3.axisBottom(x).ticks(6).tickSize(-p.ih).tickFormat((d) => d + 'GW'))).call((g) => g.select('.domain').remove());
+    N.axis(p.g.append('g').attr('transform', `translate(0,${p.ih})`).call(d3.axisBottom(x).ticks(4).tickSize(-p.ih).tickFormat((d) => d + 'GW'))).call((g) => g.select('.domain').remove());
     N.axis(p.g.append('g').call(d3.axisLeft(y).tickSize(0))).call((g) => g.select('.domain').remove()).selectAll('text').attr('class', 'n2-lab');
     p.g.selectAll('rect.p').data(rows).join('rect').attr('class', 'p').attr('y', (r) => y(r.t)).attr('height', y.bandwidth()).attr('width', (r) => x(r.p)).attr('rx', 3).attr('fill', c.m).attr('opacity', 0.5);
     p.g.selectAll('rect.s').data(rows).join('rect').attr('class', 's').attr('y', (r) => y(r.t)).attr('height', y.bandwidth()).attr('width', (r) => x(r.s)).attr('rx', 3).attr('fill', c.a);
@@ -669,7 +671,7 @@ dash.calc('gas_power_share', {
     const rows = N.rows('daily_shape').map((r) => ({ h: N.num(r.hour_start), d: N.num(r.market_total_2025), s: N.num(r.solar_2025), w: N.num(r.wind_2025) }));
     const c = N.col(); const p = N.svg(el, 300, { t: 10, r: 10, b: 28, l: 30 });
     const x = d3.scaleLinear([0, 23], [0, p.iw]); const y = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.d, r.s, r.w)) * 1.05], [p.ih, 0]).nice();
-    N.axis(p.g.append('g').call(d3.axisLeft(y).ticks(5).tickSize(-p.iw))).call((g) => g.select('.domain').remove());
+    N.axis(p.g.append('g').call(d3.axisLeft(y).ticks(5).tickSize(-p.iw))).call((g) => g.select('.domain').remove()).call((g) => g.selectAll('.tick').filter((d) => d === 0).select('text').remove());
     N.axis(p.g.append('g').attr('transform', `translate(0,${p.ih})`).call(d3.axisBottom(x).ticks(8).tickFormat((d) => d + '시')));
     [['d', c.fg, 2.4], ['s', c.solar, 2], ['w', c.wind, 2]].forEach(([k, col, w]) => p.g.append('path').datum(rows).attr('fill', 'none').attr('stroke', col).attr('stroke-width', w).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round').attr('d', d3.line().x((r) => x(r.h)).y((r) => y(r[k]))));
     const tip = N.tip(el);
@@ -726,7 +728,7 @@ dash.calc('gas_power_share', {
     N.axis(p.g.append('g').call(d3.axisLeft(y).ticks(5).tickSize(-p.iw))).call((g) => g.select('.domain').remove());
     N.axis(p.g.append('g').attr('transform', `translate(0,${p.ih})`).call(d3.axisBottom(x).tickSize(0))).selectAll('text').attr('class', 'n2-lab');
     p.g.selectAll('rect').data(rows).join('rect').attr('x', (r) => x(r.k)).attr('width', x.bandwidth()).attr('y', (r) => y(r.v)).attr('height', (r) => p.ih - y(r.v)).attr('rx', 3).attr('fill', c.a);
-    p.g.selectAll('text.v').data(rows).join('text').attr('class', 'v n2-lab').attr('x', (r) => x(r.k) + x.bandwidth() / 2).attr('y', (r) => y(r.v) - 20).attr('text-anchor', 'middle').text((r) => `${N.f1(r.v)}조원`);
+    p.g.selectAll('text.v').data(rows).join('text').attr('class', 'v n2-lab').attr('x', (r) => x(r.k) + x.bandwidth() / 2).attr('y', (r) => y(r.v) - 24).attr('text-anchor', 'middle').text((r) => `${N.f1(r.v)}조원`);
     p.g.selectAll('text.s').data(rows).join('text').attr('class', 's').attr('x', (r) => x(r.k) + x.bandwidth() / 2).attr('y', (r) => y(r.v) - 6).attr('text-anchor', 'middle').text((r) => `수입의 ${N.f1(r.sh)}% · ${N.f1(r.mt)}Mt`);
   });
   const FUELS = ['가스', '석탄', '원자력', '재생에너지', '수소·신에너지', '기타', '상용자가'];
