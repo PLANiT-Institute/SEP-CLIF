@@ -1,6 +1,6 @@
 date,stream,kind,statement,value,unit,target_year,source_table,url
-2025-03-13,수요 전망,공식,11차 전기본: 데이터센터 하계 최대전력 '38년 6.2GW(30TWh),6.2,GW,2038,제11차_전력수급기본계획_text,
-2025-03-13,공급 병목,공식,"한전 검토('23.8): DC 전기사용신청 7,343MW 중 '27년까지 공급가능 4,718MW(64%)",4718,MW,2027,제11차_전력수급기본계획_text,
+2025-03-13,수요 전망,공식,11차 전기본: 데이터센터 하계 최대전력 '38년 6.2GW(30TWh),6.2,GW,2038,제11차_전력수급기본계획_text,https://www.korea.kr/briefing/pressReleaseView.do?newsId=156675471
+2025-03-13,공급 병목,공식,"한전 검토('23.8): DC 전기사용신청 7,343MW 중 '27년까지 공급가능 4,718MW(64%)",4718,MW,2027,제11차_전력수급기본계획_text,https://www.korea.kr/briefing/pressReleaseView.do?newsId=156675471
 2026-05-07,정책,공식,"AIDC 특별법 국회 의결: 비수도권 일정 규모 이하 AIDC 계통영향평가 면제(10MW 이상 대상 제도), '27.2 시행 예정",,,2027,인공지능_데이터센터_특별법_국회_본회의_통과_text,https://www.korea.kr/briefing/pressReleaseView.do?newsId=156760349
 2026-08-20,수요 전망,기사,12차 수요 재전망: 2040년 최대전력 165GW(현재 대비 +70%),165,GW,2040,citation_2040년_최대전력수요_70_늘어난다_호남_반도체_ai_데이터센터_반영_머니투데이_머니투데이,https://www.mt.co.kr/economy/2026/08/20/2026082015244627539
 2026-08-20,수요 전망,기사,AI·반도체 추가 전력수요 연간 약 260TWh 전망,260,TWh,,citation_ai_반도체_전력수요_260twh_전망_원전_놓고_이견도_종합_뉴시스,https://www.newsis.com/view/NISX20260820_0003755992
